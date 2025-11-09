@@ -23,7 +23,7 @@ export function AdminSidebar() {
         <div className="flex items-center gap-2 mb-8 group cursor-pointer">
           <Calendar className="h-8 w-8 text-sidebar-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
           <span className="text-xl font-bold text-sidebar-foreground transition-colors duration-300 group-hover:text-sidebar-primary">
-            EventHub Admin
+            EventRadar Admin
           </span>
         </div>
 

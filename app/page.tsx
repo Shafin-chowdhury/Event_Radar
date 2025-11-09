@@ -52,19 +52,13 @@ export default async function HomePage({
             </Suspense>
           </div>
         </section>
+<section className="px-4">
+  <div className="max-w-7xl mx-auto">
+    <CategoryFilter currentCategory={searchParams.category} />
+  </div>
+</section>
 
-        <section className="py-16 px-4 bg-card">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-card-foreground mb-4 text-balance">Browse by Category</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-pretty">
-                Find events that match your interests
-              </p>
-            </div>
 
-            <CategoryFilter currentCategory={searchParams.category} />
-          </div>
-        </section>
 
         <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
