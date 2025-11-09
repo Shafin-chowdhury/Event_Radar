@@ -1,8 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
-import { authOptions } from "../../../../../lib/auth"
-import dbConnect from "../../../../../lib/mongodb"
+// import { authOptions } from "../../../../../lib/auth"
+// import dbConnect from "../../../../../lib/mongodb"
 import Event from "../../../../../models/Event"
+import { authOptions } from "@/lib/auth" // <-- FIX THIS LINE
+import dbConnect from "@/lib/mongodb"     // <-- Update this
+
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
