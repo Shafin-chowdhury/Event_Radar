@@ -51,7 +51,7 @@ export function EventGrid({ events }: EventGridProps) {
     return (
       <div className="text-center py-12">
         <p className="text-muted-foreground text-lg">No events found.</p>
-        <Button asChild className="mt-4">
+        <Button asChild className="mt-4 text-black bg-black">
           <Link href="/">View All Events</Link>
         </Button>
       </div>

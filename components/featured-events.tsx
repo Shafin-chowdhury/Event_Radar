@@ -119,3 +119,6 @@ export function FeaturedEvents({ events }: FeaturedEventsProps) {
     </div>
   )
 }
+
+
+

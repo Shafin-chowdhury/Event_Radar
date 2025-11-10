@@ -5,8 +5,8 @@ import { HeroSection } from "../components/hero-section"
 import { FeaturedEvents } from "../components/featured-events"
 import { CategoryFilter } from "../components/category-filter"
 import { EventGrid } from "../components/event-grid"
-import { Header } from "../components/header"
-import { Footer } from "../components/footer"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 async function getEvents() {
   await dbConnect()
@@ -38,20 +38,20 @@ export default async function HomePage({
       <main>
         <HeroSection />
 
-        <section className="py-16 px-4">
-          <div className="max-w-7xl mx-auto">
+        <section 
+        className="py-16 px-4"
+        id="featured"
+    >
+        <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4 text-balance">Featured Events</h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-pretty">
-                Discover the most exciting events happening near you
-              </p>
+                <h2 className="text-3xl font-bold text-foreground mb-4 text-balance">Featured Events</h2>
             </div>
 
             <Suspense fallback={<div>Loading featured events...</div>}>
-              <FeaturedEvents events={featuredEvents} />
+                <FeaturedEvents events={featuredEvents} />
             </Suspense>
-          </div>
-        </section>
+        </div>
+    </section>
 <section className="px-4">
   <div className="max-w-7xl mx-auto">
     <CategoryFilter currentCategory={searchParams.category} />
@@ -82,3 +82,7 @@ export default async function HomePage({
     </div>
   )
 }
+
+
+
+

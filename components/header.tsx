@@ -8,7 +8,7 @@ import { Input } from "./ui/input"
 import { Search, Radar , User, LogOut } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 
-export function Header() {
+export default function Header() {
   const { data: session } = useSession()
   const [searchQuery, setSearchQuery] = useState("")
   const [isScrolled, setIsScrolled] = useState(false)
@@ -41,10 +41,10 @@ export function Header() {
         <div className="hidden md:flex items-center gap-6">
           <nav className="flex items-center gap-6">
             {[
-              { href: "/?category=music", label: "Cultural Programs" },
-              { href: "/?category=tech", label: "Tech and Programming" },
-              { href: "/?category=sports", label: "Sports" },
-              { href: "/?category=business", label: "Business" },
+              { href: "/", label: "Home" },
+              { href: "/about", label: "About" },
+              { href: "/sponsers", label: "Sponsers" },
+              { href: "/contacts", label: "Contacts" },
             ].map((link) => (
               <Link
                 key={link.href}

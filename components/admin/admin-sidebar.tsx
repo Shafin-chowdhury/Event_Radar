@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Button } from "../ui/button"
-import { Calendar, LayoutDashboard, Ticket, Users, LogOut, Home } from "lucide-react"
+import { Calendar, LayoutDashboard, Ticket, Users, LogOut, Home, Radar } from "lucide-react"
 import { cn } from "../../lib/utils"
 
 const navigation = [
@@ -18,12 +18,13 @@ export function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="w-64 bg-sidebar border-r border-sidebar-border">
+    <div className="w-64 bg-chart-2 border-r border-sidebar-border">
       <div className="p-6">
         <div className="flex items-center gap-2 mb-8 group cursor-pointer">
-          <Calendar className="h-8 w-8 text-sidebar-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
-          <span className="text-xl font-bold text-sidebar-foreground transition-colors duration-300 group-hover:text-sidebar-primary">
-            EventRadar Admin
+          <Radar className="h-8 w-8 text-sidebar transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
+          <span className="text-xl font-bold text-sidebar transition-colors duration-300 group-hover:text-sidebar-primary">
+            EventRadar
+            Admin
           </span>
         </div>
 
@@ -40,7 +41,7 @@ export function AdminSidebar() {
                   "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:translate-x-1",
                   isActive
                     ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-lg"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-md",
+                    : "text-sidebar hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-md",
                 )}
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
@@ -55,11 +56,11 @@ export function AdminSidebar() {
           <Button
             variant="ghost"
             size="sm"
-            className="w-full justify-start transition-all duration-300 hover:scale-105 hover:translate-x-1"
+            className="w-full justify-start text-sidebar transition-all duration-300 hover:scale-105 hover:translate-x-1"
             asChild
           >
             <Link href="/">
-              <Home className="h-4 w-4 mr-2 transition-transform duration-300 hover:scale-110" />
+              <Home className="h-4 w-4 mr-2 transition-transform text-sidebar duration-300 hover:scale-110" />
               Back to Site
             </Link>
           </Button>

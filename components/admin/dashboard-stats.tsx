@@ -38,35 +38,35 @@ export function DashboardStats({ totalEvents, totalBookings, totalUsers }: Dashb
     },
     {
       title: "Revenue",
-      value: "$12,450",
+      value: "Tk 12,450",
       icon: TrendingUp,
       color: "text-green-600",
     },
   ]
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
       {stats.map((stat, index) => {
         const Icon = stat.icon
 
         return (
           <Card
             key={stat.title}
-            className={`transition-all duration-500 hover:shadow-lg hover:-translate-y-2 transform cursor-pointer group ${
+            className={`transition-all duration-500 hover:shadow-lg hover:-translate-y-2 transform cursor-pointer bg-chart-2 group ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: `${index * 100}ms` }}
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+              <CardTitle className="text-sm font-medium text-sidebar transition-colors duration-300 ">
                 {stat.title}
               </CardTitle>
               <Icon
-                className={`h-5 w-5 ${stat.color} transition-all duration-300 group-hover:scale-125 group-hover:rotate-12`}
+                className={`h-8 w-8 ${stat.color} text-sidebar transition-all duration-300 group-hover:scale-125 group-hover:rotate-12`}
               />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-card-foreground transition-all duration-300 group-hover:scale-110 group-hover:text-primary">
+              <div className="text-2xl font-bold text-sidebar transition-all duration-300 group-hover:scale-110 group-hover:text-primary">
                 {stat.value}
               </div>
             </CardContent>

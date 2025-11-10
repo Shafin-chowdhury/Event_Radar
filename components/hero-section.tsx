@@ -15,7 +15,6 @@ export function HeroSection() {
 
   return (
     <section className="relative py-24 px-4 overflow-hidden">
-      {/* ✅ Background Image (sharp but shadowed) */}
       <div className="absolute inset-0 z-10">
         <Image
           src="/cont.png"
@@ -24,11 +23,11 @@ export function HeroSection() {
           priority
           className="object-cover object-center"
         />
-        {/* ✅ Shadow overlay for text visibility */}
+    
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      {/* ✅ Main content */}
+ 
       <div className="max-w-7xl mx-auto text-left relative z-10 md:pl-20">
         <div
           className={`transition-all duration-1000 ease-out ${
