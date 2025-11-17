@@ -16,7 +16,7 @@ interface UsersTableProps {
 
 export function UsersTable({ users }: UsersTableProps) {
   return (
-    <Card>
+    <Card className="bg-gradient-to-br from-cyan-200 to-teal-600">
       <CardHeader>
         <CardTitle>All Users ({users.length})</CardTitle>
       </CardHeader>
@@ -33,8 +33,8 @@ export function UsersTable({ users }: UsersTableProps) {
           <TableBody>
             {users.map((user) => (
               <TableRow key={user._id}>
-                <TableCell className="font-medium">{user.name}</TableCell>
-                <TableCell>{user.email}</TableCell>
+                <TableCell className="font-medium ">{user.name}</TableCell>
+                <TableCell >{user.email}</TableCell>
                 <TableCell>
                   <Badge variant={user.role === "admin" ? "default" : "secondary"}>{user.role}</Badge>
                 </TableCell>

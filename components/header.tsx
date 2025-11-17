@@ -3,15 +3,54 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Search, Radar , User, LogOut } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { Button } from "@/components/ui/button" 
+import { Input } from "@/components/ui/input" 
+import { Search, Radar , User, LogOut, Mail, X, Loader2 } from "lucide-react" 
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu" 
+ 
 
-export default function Header() {
+export  function Header() {
   const { data: session } = useSession()
   const [searchQuery, setSearchQuery] = useState("")
   const [isScrolled, setIsScrolled] = useState(false)
+  
+  
+  const [isNotificationVisible, setIsNotificationVisible] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  
+  useEffect(() => {
+    if (session) {
+      const dismissed = localStorage.getItem("notificationDismissed")
+      if (dismissed !== "true") {
+        setIsNotificationVisible(true)
+      }
+    } else {
+     
+      setIsNotificationVisible(false)
+    }
+  }, [session]) 
+
+  const handleDismiss = () => {
+    localStorage.setItem("notificationDismissed", "true")
+    setIsNotificationVisible(false)
+  }
+
+  const handleSubscribe = async () => {
+    setIsLoading(true)
+    try {
+      
+      await fetch('/api/subscribe', {
+        method: 'POST',
+      })
+     
+      handleDismiss()
+    } catch (error) {
+      console.error("Failed to subscribe:", error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +62,7 @@ export default function Header() {
   }, [])
 
   return (
+    
     <header
       className={`sticky top-0 z-50 transition-all duration-300 border-b border-border ${
         isScrolled
@@ -30,6 +70,7 @@ export default function Header() {
           : "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       }`}
     >
+     
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <Radar className="h-8 w-8 text-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
@@ -75,7 +116,7 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:bg-primary/10"
+                  className="flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:bg-primary"
                 >
                   <User className="h-4 w-4 transition-transform duration-300 hover:scale-110" />
                   {session.user.name}
@@ -98,7 +139,7 @@ export default function Header() {
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" asChild className="transition-all duration-300 hover:scale-105">
+              <Button variant="ghost" size="sm" asChild className="transition-all duration-300 hover:bg-chart-2 hover:scale-105">
                 <Link href="/login">Sign In</Link>
               </Button>
               <Button size="sm" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
@@ -108,6 +149,45 @@ export default function Header() {
           )}
         </div>
       </div>
+
+      
+      {isNotificationVisible && (
+        <div className="bg-red-500 text-secondary-foreground shadow-inner">
+          <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Mail className="h-5 w-5 text-primary" />
+              <p className="text-sm font-medium">
+                Get notified by email when new events are posted?
+              </p>
+            </div>
+            
+           
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <Button
+                size="sm"
+                onClick={handleSubscribe}
+                disabled={isLoading}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              >
+                {isLoading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Yes, notify me"
+                )}
+              </Button>
+              <Button
+                size="icon" 
+                variant="ghost"
+                onClick={handleDismiss}
+                disabled={isLoading}
+                aria-label="Dismiss"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   )
 }

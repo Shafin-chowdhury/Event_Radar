@@ -3,7 +3,7 @@ import { Calendar, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 
-export default function Footer() {
+export  function Footer() {
   return (
     <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto px-4 py-12">

@@ -38,8 +38,8 @@ export default async function EventPage({ params }: { params: { id: string } }) 
           </div>
         </div>
       </main>
-
       <Footer />
     </div>
+
   )
 }

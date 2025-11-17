@@ -1,21 +1,21 @@
 import { Suspense } from "react"
-import dbConnect from "../lib/mongodb"
+import  dbConnect  from "../lib/mongodb" 
 import Event from "../models/Event"
 import { HeroSection } from "../components/hero-section"
 import { FeaturedEvents } from "../components/featured-events"
 import { CategoryFilter } from "../components/category-filter"
 import { EventGrid } from "../components/event-grid"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import {Header} from "@/components/header"
+import {Footer} from "@/components/footer"
 
 async function getEvents() {
-  await dbConnect()
+  await dbConnect() 
   const events = await Event.find({}).sort({ createdAt: -1 }).lean()
   return JSON.parse(JSON.stringify(events))
 }
 
 async function getFeaturedEvents() {
-  await dbConnect()
+  await dbConnect() 
   const featuredEvents = await Event.find({ featured: true }).limit(4).lean()
   return JSON.parse(JSON.stringify(featuredEvents))
 }
@@ -25,6 +25,7 @@ export default async function HomePage({
 }: {
   searchParams: { category?: string }
 }) {
+  
   const [allEvents, featuredEvents] = await Promise.all([getEvents(), getFeaturedEvents()])
 
   const filteredEvents = searchParams.category
@@ -34,31 +35,29 @@ export default async function HomePage({
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
       <main>
         <HeroSection />
 
         <section 
-        className="py-16 px-4"
-        id="featured"
-    >
-        <div className="max-w-7xl mx-auto">
+          className="py-16 px-4"
+          id="featured"
+        >
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-foreground mb-4 text-balance">Featured Events</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-4 text-balance">Featured Events</h2>
             </div>
 
             <Suspense fallback={<div>Loading featured events...</div>}>
-                <FeaturedEvents events={featuredEvents} />
+              <FeaturedEvents events={featuredEvents} />
             </Suspense>
-        </div>
-    </section>
-<section className="px-4">
-  <div className="max-w-7xl mx-auto">
-    <CategoryFilter currentCategory={searchParams.category} />
-  </div>
-</section>
+          </div>
+        </section>
 
-
+        <section className="px-4">
+          <div className="max-w-7xl mx-auto">
+            <CategoryFilter currentCategory={searchParams.category} />
+          </div>
+        </section>
 
         <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
@@ -77,12 +76,7 @@ export default async function HomePage({
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )
 }
-
-
-
-

@@ -54,46 +54,46 @@ export function EventsTable({ events }: EventsTableProps) {
 
   return (
     <>
-      <Card>
+      <Card className="bg-gradient-to-br from-cyan-500 to-teal-600">
         <CardHeader>
-          <CardTitle>All Events ({events.length})</CardTitle>
+          <CardTitle className="text-sidebar">All Events ({events.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Event</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Tickets</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="w-[70px]">Actions</TableHead>
+              <TableRow className="border-sidebar-border hover:bg-black/10">
+                <TableHead className="text-sidebar/80">Event</TableHead>
+                <TableHead className="text-sidebar/80">Category</TableHead>
+                <TableHead className="text-sidebar/80">Date</TableHead>
+                <TableHead className="text-sidebar/80">Price</TableHead>
+                <TableHead className="text-sidebar/80">Tickets</TableHead>
+                <TableHead className="text-sidebar/80">Status</TableHead>
+                <TableHead className="w-[70px] text-sidebar/80">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {events.map((event) => (
-                <TableRow key={event._id}>
+                <TableRow key={event._id} className="border-sidebar-border hover:bg-black/10">
                   <TableCell>
                     <div>
-                      <p className="font-medium">{event.title}</p>
-                      <p className="text-sm text-muted-foreground">{event.location}</p>
+                      <p className="font-medium text-sidebar">{event.title}</p>
+                      <p className="text-sm text-sidebar/70">{event.location}</p>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary" className="capitalize">
+                    <Badge variant="default" className="capitalize bg-white/20 text-white hover:bg-white/30">
                       {event.category}
                     </Badge>
                   </TableCell>
-                  <TableCell>{new Date(event.date).toLocaleDateString()}</TableCell>
-                  <TableCell>TK{event.price}</TableCell>
-                  <TableCell>
+                  <TableCell className="text-sidebar">{new Date(event.date).toLocaleDateString()}</TableCell>
+                  <TableCell className="text-sidebar">TK{event.price}</TableCell>
+                  <TableCell className="text-sidebar">
                     {event.availableTickets} / {event.maxTickets}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       {event.featured && (
-                        <Badge variant="default" className="text-xs">
+                        <Badge variant="default" className="text-xs bg-blue-500 hover:bg-blue-600">
                           Featured
                         </Badge>
                       )}
@@ -105,7 +105,7 @@ export function EventsTable({ events }: EventsTableProps) {
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
+                        <Button variant="ghost" size="sm" className="text-sidebar hover:bg-black/20 hover:text-sidebar">
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
@@ -136,7 +136,7 @@ export function EventsTable({ events }: EventsTableProps) {
 
           {events.length === 0 && (
             <div className="text-center py-8">
-              <p className="text-muted-foreground">No events found</p>
+              <p className="text-sidebar/70">No events found</p>
             </div>
           )}
         </CardContent>

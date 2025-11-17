@@ -27,7 +27,7 @@ export function BookingForm({ event }: BookingFormProps) {
   const [tickets, setTickets] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
+  
 
   const totalAmount = tickets * event.price
 
@@ -46,7 +46,7 @@ export function BookingForm({ event }: BookingFormProps) {
 
     setIsLoading(true)
     setError("")
-    setSuccess("")
+
 
     try {
       const response = await fetch("/api/bookings", {
@@ -64,8 +64,9 @@ export function BookingForm({ event }: BookingFormProps) {
       const data = await response.json()
 
       if (response.ok) {
-        setSuccess("Booking confirmed! Check your email for details.")
-        setTickets(1)
+      
+        router.push(`/booking/${data.booking._id}`)
+       
       } else {
         setError(data.error || "Booking failed")
       }
@@ -92,12 +93,7 @@ export function BookingForm({ event }: BookingFormProps) {
           </Alert>
         )}
 
-        {success && (
-          <Alert className="animate-in slide-in-from-top-2 duration-300 border-green-200 bg-green-50">
-            <CheckCircle className="h-4 w-4 text-green-600" />
-            <AlertDescription className="text-green-800">{success}</AlertDescription>
-          </Alert>
-        )}
+      
 
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-muted rounded-lg transition-all duration-300 hover:bg-muted/80 hover:scale-105">
@@ -110,6 +106,7 @@ export function BookingForm({ event }: BookingFormProps) {
           <div className="space-y-2">
             <Label>Number of tickets</Label>
             <div className="flex items-center gap-3">
+        
               <Button
                 variant="outline"
                 size="sm"
@@ -150,7 +147,7 @@ export function BookingForm({ event }: BookingFormProps) {
           <div className="flex items-center justify-between p-4 bg-primary/10 rounded-lg border border-primary/20 transition-all duration-300 hover:bg-primary/15 hover:scale-105">
             <span className="font-semibold">Total Amount</span>
             <span className="text-xl font-bold text-primary transition-all duration-300 hover:scale-110">
-              ${totalAmount}
+              Tk{totalAmount} 
             </span>
           </div>
         </div>
@@ -161,6 +158,7 @@ export function BookingForm({ event }: BookingFormProps) {
           className="w-full transition-all duration-300 hover:shadow-xl transform hover:scale-105 relative overflow-hidden group"
           size="lg"
         >
+      
           <span className="relative z-10 flex items-center justify-center gap-2">
             {isLoading && (
               <div className="animate-spin rounded-full h-4 w-4 border-2 border-primary-foreground border-t-transparent"></div>

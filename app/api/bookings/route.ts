@@ -22,7 +22,6 @@ export async function POST(request: NextRequest) {
 
     await dbConnect()
 
-    // Get event and check availability
     const event = await Event.findById(eventId)
     if (!event) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 })
@@ -32,28 +31,38 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Not enough tickets available" }, { status: 400 })
     }
 
-    // Get user details
     const user = await User.findById(session.user.id)
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 })
     }
 
-    // Create booking
-    const booking = await Booking.create({
+    // --- UPDATED ---
+    // We now create the booking variable
+    const booking = new Booking({
       userId: session.user.id,
       eventId,
       userName: user.name,
       userEmail: user.email,
       numberOfTickets,
       totalAmount,
+      bookingDate: new Date(), // Add booking date
+      status: "confirmed", // <-- SIMULATE BUBT BANK PAYMENT
     })
+    
+    // Save the new booking
+    await booking.save()
+    // --- END UPDATE ---
 
     // Update event availability
     await Event.findByIdAndUpdate(eventId, {
       $inc: { availableTickets: -numberOfTickets },
     })
 
-    return NextResponse.json({ message: "Booking created successfully", bookingId: booking._id }, { status: 201 })
+    // --- UPDATED ---
+    // We now return the full booking object
+    return NextResponse.json({ message: "Booking created successfully", booking: booking }, { status: 201 })
+    // --- END UPDATE ---
+
   } catch (error) {
     console.error("Booking error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })

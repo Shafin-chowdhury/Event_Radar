@@ -22,12 +22,12 @@ interface BookingsTableProps {
 
 export function BookingsTable({ bookings }: BookingsTableProps) {
   return (
-    <Card>
+    <Card className="bg-gradient-to-br from-cyan-500 to-teal-600">
       <CardHeader>
         <CardTitle>All Bookings ({bookings.length})</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
+        <Table className="">
           <TableHeader>
             <TableRow>
               <TableHead>Customer</TableHead>

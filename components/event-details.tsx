@@ -1,6 +1,7 @@
 import { Badge } from "./ui/badge"
 import { Calendar, MapPin, Users, Clock } from "lucide-react"
 
+
 interface Event {
   _id: string
   title: string
