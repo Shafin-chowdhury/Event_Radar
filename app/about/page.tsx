@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { Users, Target, Zap, Facebook, Twitter, Linkedin, Instagram, MessageCircle } from "lucide-react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import {Header} from "@/components/header";
+import {Footer} from "@/components/footer";
 import Logo from "@/public/logob.png";
 import png1 from "@/public/location.png"
 import  TargetP  from "@/public/target.png";
@@ -14,7 +14,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Header */}
+     
       <Header />
 
       <main className="flex-grow">
@@ -66,35 +66,9 @@ export default function AboutPage() {
       </div>
     </div>
 
-    {/* Right Side - 4 Images in Grid */}
-    {/* <div className="grid grid-cols-2 gap-5 justify-center items-center">
-      <Image
-        src="/ab.png"
-        alt="Event Image 1"
-        width={700}
-        height={900}
-        className=" shadow-2xl object-cover hover:scale-105 transition-transform duration-300"
-      />
-      <Image
-        src= {png1}
-        alt="Event Image 2"
-        width={400}
-        height={300}
-        className="rounded-2xl shadow-2xl object-cover hover:scale-105 transition-transform duration-300"
-      />
-      <Image
-        src={TargetP}
-        alt="Event Image 3"
-        width={400}
-        height={300}
-        className="rounded-2xl shadow-2xl object-cover hover:scale-105 transition-transform duration-300"
-      />
-     
-    </div> */}
 
-    {/* Right Side - Highlighted Big Image with Smaller Ones */}
 <div className="grid grid-cols-2 gap-5 justify-center items-center">
-  {/* Big main image (ab.png) - spans both columns */}
+ 
   <div className="col-span-2">
     <Image
       src="/ab.png"
@@ -105,7 +79,7 @@ export default function AboutPage() {
     />
   </div>
 
-  {/* Smaller supporting images */}
+ 
   <Image
     src={png1}
     alt="Event Image 2"
