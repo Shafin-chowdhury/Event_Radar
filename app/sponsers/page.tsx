@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { DollarSign, Star, TrendingUp, Users, Target, Award, Heart } from "lucide-react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import {Header} from "@/components/header";
+import {Footer} from "@/components/footer";
 
 export default function SponsorsPage() {
   const sponsorTiers = [

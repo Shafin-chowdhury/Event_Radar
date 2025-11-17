@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Target } from "lucide-react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import {Header} from "@/components/header";
+import {Footer} from "@/components/footer";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
